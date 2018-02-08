@@ -37,22 +37,27 @@ class List extends React.Component {
   }
 
   toggleNoteStatus(key, task) {
-    let notesArr = this.state.notes.map((note) => {
+    let updateNotes = this.state.notes.map((note) => {
       if (note.task === task) {
         note.isComplete = !note.isComplete;
       }
       return note;
     })
     this.setState({
-      notes: notesArr
+      notes: updateNotes
     })
   }
 
+  handleKeyPress(event) {
+    console.log(event.key);
+    if (event.key == 'Enter') {
+      this.setState({ notes: [...this.state.notes, {task: this.state.noteText, isComplete: false}] })
+    }
+    this.setState({ noteText: '' })
+  }
+
   render() {
-    console.log('notes!: ', this.state.notes);
     let notes = this.state.notes.map((val, key) => {
-      console.log(val);
-      // console.log('jere',this.state.notes[key].isComplete, key);
       return <Note toggleNoteStatus={() => this.toggleNoteStatus(key, val.task)} task={val.task} status={val.isComplete} key={key}></Note>
     })
 
@@ -69,6 +74,7 @@ class List extends React.Component {
                 type="text"
                 value={this.state.noteText}
                 onChange={noteText => this.updateNoteText(noteText)}
+                onKeyPress={this.handleKeyPress.bind(this)}
               />
             </div>
           </Grid>

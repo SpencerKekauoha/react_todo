@@ -1,8 +1,11 @@
 $blue: #00b0ff;
 $green: #22e58a;
 $red: #FF9E80;
+$grey: #adadad;
 
 .list {
+
+  ////// Add task input
 
   .note, input {
     display: flex;
@@ -16,6 +19,21 @@ $red: #FF9E80;
     box-shadow: 1px 6px 26px -2px rgba(0,0,0,0.32);
     font-size: 16px;
   }
+
+  input {
+    width: 100%;
+    border: none;
+    &::placeholder {
+      color: $grey;
+    }
+  }
+
+  .note-input {
+    display: flex;
+    justify-content: center;
+  }
+
+  /////// Checkmark
 
   .check {
     background: $red;
@@ -32,17 +50,53 @@ $red: #FF9E80;
     &:hover {
       cursor: pointer;
     }
+
+    &:after{
+      content: '';
+      display: block;
+      width: 3px;
+      height: 6px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
   }
 
-  .note-input {
-    display: flex;
-    justify-content: center;
+  .complete {
+
+    .check {
+      background: $green;
+      transition: .25s;
+
+      &:after{
+        content: '';
+        display: block;
+        width: 3px;
+        height: 6px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        animation: fadeInDown .1s;
+        transition: opacity transform .25s;
+      }
+    }
+
+    span {
+      text-decoration: line-through;
+      color: $grey;
+    }
   }
 
-  input {
-    width: 100%;
-    border: none;
+  .incomplete {
+
+    .check:after {
+      transform: translateY(-5px) rotate(45deg);
+      opacity: 0;
+      transition: .25s;
+    }
   }
+
+  /////// Add task button
 
   .btn-container {
     display: flex;
@@ -97,23 +151,6 @@ $red: #FF9E80;
       transform: rotate(90deg);
     }
   }
-
-  .complete {
-
-    .check {
-      background: $green;
-      
-      &:after{
-        content: '';
-        display: block;
-        width: 3px;
-        height: 6px;
-        border: solid white;
-        border-width: 0 2px 2px 0;
-        transform: rotate(45deg);
-      }
-    }
-  }
 }
 
 @keyframes rotate {
@@ -126,4 +163,14 @@ $red: #FF9E80;
 @keyframes rotateOpposite {
   0% {transform: rotate(90deg);}
   25% {transform: rotate(0deg);}
+}
+
+@keyframes fadeInDown {
+  0% {transform: translateY(-10px) rotate(45deg);}
+  100% {transform: translateY(0px) rotate(45deg);}
+}
+
+@keyframes fadeInUp {
+  100% {transform: translateY(0px) rotate(45deg);}
+  0% {transform: translateY(-10px) rotate(45deg);}
 }
