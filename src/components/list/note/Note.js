@@ -4,7 +4,7 @@ import Grid from 'material-ui/Grid';
 function Note(props) {
 
   return (
-    <Grid item xs={11} md={6}>
+    <Grid item xs={11} md={6} lg={4}>
       <div className={ (!props.status) ? 'note incomplete' : 'note complete' }>
         <span>{props.task}</span>
         <div className="check-container">
