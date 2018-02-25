@@ -1,6 +1,7 @@
 import React from 'react';
 import Note from './note/Note.js';
 import Grid from 'material-ui/Grid';
+import swal from 'sweetalert';
 import './List.css';
 
 class List extends React.Component {
@@ -22,18 +23,17 @@ class List extends React.Component {
           isComplete: true,
         }
       ],
-      noteText: '',
+      noteText: 'test',
     }
   }
 
   addToList() {
-    if (!this.state.noteText) { return }
+    if (!this.state.noteText) {
+      swal("Oops!", "You left the input field blank", "error");
+      return;
+    }
     this.setState({ notes: [...this.state.notes, {task: this.state.noteText, isComplete: false}] })
     this.setState({ noteText: '' })
-  }
-
-  updateNoteText(noteText) {
-    this.setState({ noteText: noteText.target.value })
   }
 
   toggleNoteStatus(key, task) {
@@ -49,10 +49,18 @@ class List extends React.Component {
   }
 
   handleKeyPress(event) {
+<<<<<<< HEAD
     if (event.key == 'Enter') {
+=======
+    if (event.key === 'Enter') {
+>>>>>>> 878fb1ab6dcf1fcc917c23afd830ea4f9dd3fca8
       this.setState({ notes: [...this.state.notes, {task: this.state.noteText, isComplete: false}] })
     }
-    this.setState({ noteText: '' })
+    return;
+  }
+
+  updateNoteText(noteText) {
+    this.setState({ noteText: noteText.target.value })
   }
 
   render() {
@@ -72,8 +80,8 @@ class List extends React.Component {
                 placeholder="Add a task"
                 type="text"
                 value={this.state.noteText}
-                onChange={noteText => this.updateNoteText(noteText)}
                 onKeyPress={this.handleKeyPress.bind(this)}
+                onChange={noteText => this.updateNoteText(noteText)}
               />
             </div>
           </Grid>
