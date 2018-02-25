@@ -1,109 +1,112 @@
-.list .note, .list input {
-  display: flex;
-  justify-content: space-between;
-  text-transform: capitalize;
-  padding: 15px 25px;
-  margin-bottom: 15px;
-  border-radius: 25px;
-  -webkit-box-shadow: 1px 6px 26px -2px rgba(0, 0, 0, 0.32);
-  -moz-box-shadow: 1px 6px 26px -2px rgba(0, 0, 0, 0.32);
-  box-shadow: 1px 6px 26px -2px rgba(0, 0, 0, 0.32);
-  font-size: 16px; }
-
-.list input {
-  width: 100%;
-  border: none; }
-  .list input::placeholder {
-    color: #adadad; }
-
-.list .note-input {
-  display: flex;
-  justify-content: center; }
-
-.list .check {
-  background: #FF9E80;
-  height: 20px;
-  width: 20px;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  -webkit-box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.64);
-  -moz-box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.64);
-  box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.64); }
-  .list .check:hover {
-    cursor: pointer; }
-  .list .check:after {
-    content: '';
-    display: block;
-    width: 3px;
-    height: 6px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg); }
-
-.list .complete .check {
-  background: #22e58a;
-  transition: .25s; }
-  .list .complete .check:after {
-    content: '';
-    display: block;
-    width: 3px;
-    height: 6px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-    animation: fadeInDown .1s;
-    transition: opacity transform .25s; }
-
-.list .complete span {
-  text-decoration: line-through;
-  color: #adadad; }
-
-.list .incomplete .check:after {
-  transform: translateY(-5px) rotate(45deg);
-  opacity: 0;
-  transition: .25s; }
-
-.list .btn-container {
-  display: flex;
-  justify-content: center; }
-
-.list .btn {
-  position: absolute;
-  bottom: 50px;
-  height: 75px;
-  width: 75px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #00b0ff;
-  border-radius: 75px;
-  color: white;
-  font-size: 100px;
-  font-weight: 100;
-  -webkit-box-shadow: 1px 6px 26px -2px rgba(0, 0, 0, 0.32);
-  -moz-box-shadow: 1px 6px 26px -2px rgba(0, 0, 0, 0.32);
-  box-shadow: 1px 6px 26px -2px rgba(0, 0, 0, 0.32);
-  transition: .25s; }
-  .list .btn:hover {
-    cursor: pointer;
-    opacity: .7; }
-  .list .btn:hover .vertical {
-    animation: rotate 2s infinite; }
-  .list .btn:hover .horizontal {
-    animation: rotateOpposite 2s infinite; }
-  .list .btn .plus {
-    position: relative;
+.list {
+  padding: 0 100px; }
+  @media only screen and (max-width: 1024px) {
+    .list {
+      padding: 0 50px; } }
+  @media only screen and (max-width: 768px) {
+    .list {
+      padding: 0 20px; } }
+  @media only screen and (max-width: 425px) {
+    .list {
+      padding: 0 0; } }
+  .list .note, .list input {
+    display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
+    padding: 15px 25px;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    -webkit-box-shadow: 0px 2px 11px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 2px 11px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 2px 11px -1px rgba(0, 0, 0, 0.75);
+    font-size: 16px; }
+  .list input {
+    width: 100%;
+    border: none; }
+    .list input::placeholder {
+      color: #adadad; }
+  .list .note-input {
     display: flex;
     justify-content: center; }
-  .list .btn .vertical, .list .btn .horizontal {
+  .list .check {
+    background: #FF9E80;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.64);
+    -moz-box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.64);
+    box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.64); }
+    .list .check:hover {
+      cursor: pointer; }
+    .list .check:after {
+      content: '';
+      display: block;
+      width: 3px;
+      height: 6px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg); }
+  .list .complete .check {
+    background: #22e58a;
+    transition: .25s; }
+    .list .complete .check:after {
+      content: '';
+      display: block;
+      width: 3px;
+      height: 6px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      animation: fadeInDown .1s;
+      transition: opacity transform .25s; }
+  .list .complete span {
+    text-decoration: line-through;
+    color: #adadad; }
+  .list .incomplete .check:after {
+    transform: translateY(-5px) rotate(45deg);
+    opacity: 0;
+    transition: .25s; }
+  .list .btn-container {
+    display: flex;
+    justify-content: center; }
+  .list .btn {
     position: absolute;
-    background: white;
-    width: 35px;
-    height: 2px; }
-  .list .btn .horizontal {
-    transform: rotate(90deg); }
+    bottom: 50px;
+    height: 75px;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #00b0ff;
+    border-radius: 75px;
+    color: white;
+    font-size: 100px;
+    font-weight: 100;
+    -webkit-box-shadow: 1px 6px 26px -2px rgba(0, 0, 0, 0.32);
+    -moz-box-shadow: 1px 6px 26px -2px rgba(0, 0, 0, 0.32);
+    box-shadow: 1px 6px 26px -2px rgba(0, 0, 0, 0.32);
+    transition: .25s; }
+    .list .btn:hover {
+      cursor: pointer;
+      opacity: .7; }
+    .list .btn:hover .vertical {
+      animation: rotate 2s infinite; }
+    .list .btn:hover .horizontal {
+      animation: rotateOpposite 2s infinite; }
+    .list .btn .plus {
+      position: relative;
+      display: flex;
+      justify-content: center; }
+    .list .btn .vertical, .list .btn .horizontal {
+      position: absolute;
+      background: white;
+      width: 35px;
+      height: 2px; }
+    .list .btn .horizontal {
+      transform: rotate(90deg); }
 
 @keyframes rotate {
   0% {

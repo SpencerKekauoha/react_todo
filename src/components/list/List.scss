@@ -1,9 +1,44 @@
+@mixin bp($point) {
+  @if $point == small {
+    @media only screen
+    and (max-width : 425px) {
+      @content;
+    }
+  }
+  @elseif $point == medium {
+    @media only screen
+    and (max-width : 768px) {
+      @content;
+    }
+  }
+  @elseif $point == large {
+    @media only screen
+    and (max-width : 1024px) {
+      @content;
+    }
+  }
+}
+
 $blue: #00b0ff;
 $green: #22e58a;
 $red: #FF9E80;
 $grey: #adadad;
 
+
 .list {
+  padding: 0 100px;
+
+  @include bp(large) {
+    padding: 0 50px;
+  }
+
+  @include bp(medium) {
+    padding: 0 20px;
+  }
+
+  @include bp(small) {
+    padding: 0 0;
+  }
 
   ////// Add task input
 
@@ -14,9 +49,9 @@ $grey: #adadad;
     padding: 15px 25px;
     margin-bottom: 15px;
     border-radius: 25px;
-    -webkit-box-shadow: 1px 6px 26px -2px rgba(0,0,0,0.32);
-    -moz-box-shadow: 1px 6px 26px -2px rgba(0,0,0,0.32);
-    box-shadow: 1px 6px 26px -2px rgba(0,0,0,0.32);
+    -webkit-box-shadow: 0px 2px 11px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 11px -1px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 11px -1px rgba(0,0,0,0.75);
     font-size: 16px;
   }
 

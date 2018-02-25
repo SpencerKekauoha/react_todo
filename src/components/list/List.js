@@ -49,7 +49,6 @@ class List extends React.Component {
   }
 
   handleKeyPress(event) {
-    console.log(event.key);
     if (event.key == 'Enter') {
       this.setState({ notes: [...this.state.notes, {task: this.state.noteText, isComplete: false}] })
     }
@@ -63,7 +62,7 @@ class List extends React.Component {
 
     return (
       <div className="list">
-        <Grid container spacing={8} justify='center'>
+        <Grid container spacing={8} justify='center' justify-md-flex-end="true">
           {notes}
         </Grid>
         <Grid container spacing={8} justify='center'>
