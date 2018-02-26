@@ -4,7 +4,7 @@ import './Hamburger.css';
 function Hamburger() {
   return (
     <div className="hamburger">
-      <a href="">
+      <a>
         <div className="full-square">
           <div className="top-left square"></div>
           <div className="top-right square"></div>
