@@ -9,34 +9,39 @@ class List extends React.Component {
     super(props);
 
     this.state = {
-      notes: [
-        {
-          task: 'water the plants',
-          isComplete: false,
-        },
-        {
-          task: 'go to the gym',
-          isComplete: false,
-        },
-        {
-          task: 'cook dinner',
-          isComplete: true,
-        }
-      ],
-      noteText: 'test',
+      notes: [],
+      noteText: ''
     }
   }
 
   addToList() {
+    let duplicate = false;
+
+    // Add a new note to the list
     if (!this.state.noteText) {
       swal("Oops!", "You left the input field blank", "error");
       return;
     }
+
+    // Check if task has already been added
+    this.state.notes.map((task) => {
+      if (this.state.noteText.toLowerCase() === task.task.toLowerCase()) {
+        duplicate = true;
+      }
+    });
+
+    if (duplicate) {
+      swal("Oops", "You already added this task", "error");
+      return;
+    }
+
+    // If unique input, add task
     this.setState({ notes: [...this.state.notes, {task: this.state.noteText, isComplete: false}] })
     this.setState({ noteText: '' })
   }
 
   toggleNoteStatus(key, task) {
+    // Toggle status to complete or incomplete
     let updateNotes = this.state.notes.map((note) => {
       if (note.task === task) {
         note.isComplete = !note.isComplete;
@@ -46,20 +51,41 @@ class List extends React.Component {
     this.setState({
       notes: updateNotes
     })
+
+    // Check if all tasks are complete
+    let checkTasksComplete = this.state.notes.filter(status => status.isComplete !== true)
+    if (checkTasksComplete === undefined || checkTasksComplete.length === 0) {
+      swal("Woo Hoo!", "You finished all of your tasks!", "success");
+    }
   }
 
   handleKeyPress(event) {
-<<<<<<< HEAD
-    if (event.key == 'Enter') {
-=======
+    let duplicate = false;
+
+    // Add new note on keypress of Enter
     if (event.key === 'Enter') {
->>>>>>> 878fb1ab6dcf1fcc917c23afd830ea4f9dd3fca8
+
+      // Check if task has already been added
+      this.state.notes.map((task) => {
+        if (this.state.noteText.toLowerCase() === task.task.toLowerCase()) {
+          duplicate = true;
+        }
+      });
+
+      if (duplicate) {
+        swal("Oops", "You already added this task", "error");
+        return;
+      }
+
+      // If unique input, add task
       this.setState({ notes: [...this.state.notes, {task: this.state.noteText, isComplete: false}] })
+      this.setState({ noteText: '' })
     }
     return;
   }
 
   updateNoteText(noteText) {
+    // setstate according to user input
     this.setState({ noteText: noteText.target.value })
   }
 
@@ -70,7 +96,7 @@ class List extends React.Component {
 
     return (
       <div className="list">
-        <Grid container spacing={8} justify='center' justify-md-flex-end="true">
+        <Grid container spacing={8} justify='center'>
           {notes}
         </Grid>
         <Grid container spacing={8} justify='center'>
