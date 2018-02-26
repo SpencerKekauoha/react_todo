@@ -17,7 +17,7 @@ class List extends React.Component {
   addToList() {
     let duplicate = false;
 
-    // Add a new note to the list
+    // Check if user has added a note
     if (!this.state.noteText) {
       swal("Oops!", "You left the input field blank", "error");
       return;
@@ -74,6 +74,12 @@ class List extends React.Component {
 
       if (duplicate) {
         swal("Oops", "You already added this task", "error");
+        return;
+      }
+
+      // Check is user has entered a task
+      if (!this.state.noteText) {
+        swal("Oops!", "You left the input field blank", "error");
         return;
       }
 
