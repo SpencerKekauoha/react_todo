@@ -27,7 +27,8 @@
       color: #adadad; }
   .list .note-input {
     display: flex;
-    justify-content: center; }
+    justify-content: center;
+    position: relative; }
   .list .check {
     background: #FF9E80;
     height: 20px;
@@ -71,15 +72,17 @@
     transition: .25s; }
   .list .btn-container {
     display: flex;
-    justify-content: center; }
+    justify-content: center;
+    position: absolute; }
   .list .btn {
-    position: fixed;
-    bottom: 50px;
+    position: absolute;
+    top: 75px;
     height: 75px;
     width: 75px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 50px;
     background: #00b0ff;
     border-radius: 75px;
     color: white;

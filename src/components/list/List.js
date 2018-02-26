@@ -109,12 +109,6 @@ class List extends React.Component {
                 onKeyPress={this.handleKeyPress.bind(this)}
                 onChange={noteText => this.updateNoteText(noteText)}
               />
-            </div>
-          </Grid>
-        </Grid>
-        <Grid container spacing={8} justify='center'>
-          <Grid item xs={12} md={6}>
-            <div className="btn-container">
               <a className="btn" onClick={this.addToList.bind(this)}>
                 <div className="plus">
                   <div className="vertical"></div>
