@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Nav from './components/nav/Nav.js';
-import List from './components/list/List.js';
 import './App.css';
 
 class App extends Component {
@@ -8,7 +7,6 @@ class App extends Component {
     return (
       <div className="App">
         <Nav></Nav>
-        <List></List>
       </div>
     );
   }
