@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { HashRouter, Route, Link } from "react-router-dom";
 
 import Grid from 'material-ui/Grid';
 import Menu, { MenuItem } from 'material-ui/Menu';
@@ -26,7 +26,7 @@ class Nav extends React.Component {
     const { anchorEl } = this.state;
 
     return (
-      <Router>
+      <HashRouter>
         <div>
           <div className="nav">
             <Grid container spacing={8} alignItems='center' justify='space-between'>
@@ -76,7 +76,7 @@ class Nav extends React.Component {
             <Route exact path="/weather" component={Weather} />
           </div>
         </div>
-      </Router>
+      </HashRouter>
     )
   }
 }
