@@ -6,8 +6,8 @@ import axios from 'axios';
 
 // Styling
 import Grid from 'material-ui/Grid';
-import '../../assets/weather-icons-master/css/weather-icons.min.css';
-import '../../assets/weather-icons-master/css/weather-icons-wind.min.css';
+import '../../../src/weather-icons.css';
+import '../../../src/weather-icons-wind.css';
 import './weather.css';
 
 class Weather extends React.Component {
