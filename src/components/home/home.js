@@ -42,7 +42,7 @@ class Home extends React.Component {
     else {
       this.setState({
         greeting: 'Good Evening',
-        icon: 'wi-moon-waning-crescent-4',
+        icon: 'wi-night-clear',
         greetingClass: 'evening'
       });
     }
