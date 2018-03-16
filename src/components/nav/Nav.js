@@ -47,7 +47,7 @@ class Nav extends React.Component {
                 </div>
               </Grid>
               <Grid item xs={6}>
-                <h1>Your Daily Brief</h1>
+                <h1>Daily Brief</h1>
               </Grid>
               <Grid item xs={2}></Grid>
             </Grid>

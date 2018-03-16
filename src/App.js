@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+
+// Component
 import Nav from './components/nav/Nav.js';
+
+// Styles
 import './App.css';
 
 class App extends Component {

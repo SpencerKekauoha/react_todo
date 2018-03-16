@@ -1,5 +1,9 @@
 import React from 'react';
+
+// Component
 import Note from './note/Note.js';
+
+// Styles
 import Grid from 'material-ui/Grid';
 import swal from 'sweetalert';
 import './List.css';
