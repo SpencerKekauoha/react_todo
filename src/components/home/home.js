@@ -23,7 +23,7 @@ class Home extends React.Component {
 
   // check the time, and return a gretting based on time of day
   getGreeting() {
-    let time = new Date("2000-01-01 10:30 PM").getHours();
+    let time = new Date().getHours();
 
     if (time <= 11) {
       this.setState({
