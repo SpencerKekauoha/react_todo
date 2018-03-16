@@ -1,10 +1,14 @@
 import React from 'react';
 
-// import Grid from 'material-ui/Grid';
-import './weather.css';
+// API
 import Config from '../config.js';
-
 import axios from 'axios';
+
+// Styling
+import Grid from 'material-ui/Grid';
+import '../assets/weather-icons-master/css/weather-icons.min.css';
+import '../assets/weather-icons-master/css/weather-icons-wind.min.css';
+import './weather.css';
 
 class Weather extends React.Component {
   constructor(props) {
@@ -14,6 +18,7 @@ class Weather extends React.Component {
       forecast: null,
       lon: 0,
       lat: 0,
+      greeting: '',
       API_KEY: Config.apiKey
     }
   }
@@ -21,36 +26,38 @@ class Weather extends React.Component {
 
 
 componentDidMount() {
-  console.log('getting weather data');
+
+  this.getGreeting();
+
+  // set location for HTML geolocate
   let geoLocate = document.getElementById("weather");
 
+  // get lon and lat
   let getLocation = () => {
-    console.log('init fn')
-      if (navigator.geolocation) {
-        console.log('geo success')
-          navigator.geolocation.getCurrentPosition(showPosition);
-      } else {
-        console.log('failed')
-        alert('Your browser does not support geolocation')
-          geoLocate.innerHTML = "Geolocation is not supported by this browser.";
-      }
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      geoLocate.innerHTML = "Geolocation is not supported by this browser.";
+    }
   }
 
+  // set coords to state
    let showPosition = (position) => {
-    console.log('show position')
-      this.setState({
-        lat: position.coords.latitude,
-        lon: position.coords.longitude
-      });
+    this.setState({
+      lat: position.coords.latitude,
+      lon: position.coords.longitude
+    });
 
-      getForecast();
+    // call to api
+    getForecast();
   }
 
   getLocation();
+
+  // api call to weather underground: append lon, lat, and apikey to query string
   let getForecast = () => {
     axios.get(`https://api.wunderground.com/api/${this.state.API_KEY}/conditions/forecast/q/${this.state.lat},${this.state.lon}.jsonp `)
       .then((data) => {
-        console.log(data);
         this.setState({
           forecast: data.data
         })
@@ -58,36 +65,67 @@ componentDidMount() {
   }
 }
 
+// check the time, and return a gretting based on time of day
+getGreeting() {
+  let time = new Date("2000-01-01 10:30 PM").getHours();
+
+  if (time <= 11) {
+    this.setState({
+      greeting: 'Good Morning'
+    });
+  }
+  else if (time > 11 && time <= 15) {
+    this.setState({
+      greeting: 'Good Afternoon'
+    });
+  }
+  else {
+    this.setState({
+      greeting: 'Good Evening'
+    });
+  }
+}
+
   render() {
     return (
-      <div id="weather">
-        { this.state.forecast === null &&
-          <h3>Getting your weather report</h3>
-        }
-        { this.state.forecast !== null &&
-          <div className="forecast">
-            <div className="icon">
-              <img src={this.state.forecast.forecast.simpleforecast.forecastday[0].icon_url} alt=""/>
-            </div>
-            <div className="forecast-info">
-              <p className="temp">{Math.round(this.state.forecast.current_observation.temp_f)}°F</p>
-              <div className="middle">
-                <p className="conditions">{this.state.forecast.current_observation.weather}</p>
-                <p className="city">{this.state.forecast.current_observation.display_location.city}, {this.state.forecast.current_observation.display_location.state}</p>
-              </div>
-              <div className="date">
-                <p>{this.state.forecast.forecast.simpleforecast.forecastday[0].date.monthname}</p>
-                <p>{this.state.forecast.forecast.simpleforecast.forecastday[0].date.day}</p>
-              </div>
-            </div>
-            <div className="additional-forecast">
-              <p>Winds: {this.state.forecast.current_observation.wind_mph} MPH</p>
-              <p>Wind Direction: {this.state.forecast.current_observation.wind_dir}</p>
-              <p>Humidity: {this.state.forecast.current_observation.relative_humidity}</p>
+      <Grid container spacing={8} justify='center'>
+        <Grid item xs={11} md={6} lg={4}>
+          { this.state.forecast === null &&
+          <div className="loading">
+            <h3>{ this.state.greeting }. Grabbing your forecast for today.</h3>
+            <div className="horizon">
+              <i className="wi wi-day-sunny"></i>
+              <div className="horizon-line"></div>
             </div>
           </div>
-        }
-      </div>
+          }
+          { this.state.forecast !== null &&
+          <div id="weather">
+            <div className="forecast">
+              <div className="icon">
+                <i className={`wi wi-${this.state.forecast.current_observation.icon}`}></i>
+              </div>
+              <div className="forecast-info">
+                <p className="temp">{Math.round(this.state.forecast.current_observation.temp_f)}°F</p>
+                <div className="middle">
+                  <p className="conditions">{this.state.forecast.current_observation.weather}</p>
+                  <p className="city">{this.state.forecast.current_observation.display_location.city}, {this.state.forecast.current_observation.display_location.state}</p>
+                </div>
+                <div className="date">
+                  <p>{this.state.forecast.forecast.simpleforecast.forecastday[0].date.monthname}</p>
+                  <p>{this.state.forecast.forecast.simpleforecast.forecastday[0].date.day}</p>
+                </div>
+              </div>
+              <div className="additional-forecast">
+                <span><i className="wi wi-strong-wind"></i> {this.state.forecast.current_observation.wind_mph} MPH</span>
+                <span><i className="wi wi-wind wi-from-s"></i>{this.state.forecast.current_observation.wind_dir} </span>
+                <span><i className="wi wi-humidity"></i> {this.state.forecast.current_observation.relative_humidity}</span>
+              </div>
+            </div>
+          </div>
+          }
+        </Grid>
+      </Grid>
     )
   }
 }

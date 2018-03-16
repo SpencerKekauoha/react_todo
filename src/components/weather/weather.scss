@@ -2,8 +2,57 @@ $gray: #95a5a6;
 $blue: #00b0ff;
 $white: #fff;
 $dark-gray: #2E3335;
+$yellow: #F5D76E;
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    font-weight: 300;
+  }
+
+  .horizon {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+
+    &-line {
+      border-top: 6px $yellow solid;
+      border-radius: 5px;
+      position: absolute;
+      background: white;
+      width: 35%;
+      height: 50%;
+      top: 50%;
+      z-index: 10;
+    }
+  }
+
+  i {
+    font-size: 100px;
+    color: $yellow;
+    animation: load 3s infinite;
+    padding: 100px 0;
+    z-index: 5;
+  }
+}
+
+@keyframes load {
+  0% {transform: translateY(60px);}
+  50% {transform: translateY(-60px);}
+  100% {transform: translateY(60px);}
+}
 
 #weather {
+  border: 1px $gray solid;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 2px 11px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 2px 11px -1px rgba(0,0,0,0.75);
+  box-shadow: 0px 2px 11px -1px rgba(0,0,0,0.75);
 
   .icon {
     display: flex;
@@ -11,8 +60,9 @@ $dark-gray: #2E3335;
     align-items: center;
     height: 200px;
 
-    img {
-      height: 100px;
+    i {
+      font-size: 150px;
+      color: $dark-gray;
     }
   }
 
@@ -56,6 +106,14 @@ $dark-gray: #2E3335;
   }
 
   .additional-forecast {
+    padding: 50px 0;
     background: $dark-gray;
+    display: flex;
+    justify-content: space-around;
+
+    i {
+      font-size: 20px;
+      padding-right: 5px;
+    }
   }
 }
