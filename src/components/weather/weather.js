@@ -103,7 +103,7 @@ getGreeting() {
           <div id="weather">
             <div className="forecast">
               <div className="icon">
-                <i className={`wi wi-${this.state.forecast.current_observation.icon}`}></i>
+                <i className={`wi wi-wu-${this.state.forecast.current_observation.icon}`}></i>
               </div>
               <div className="forecast-info">
                 <p className="temp">{Math.round(this.state.forecast.current_observation.temp_f)}°F</p>
