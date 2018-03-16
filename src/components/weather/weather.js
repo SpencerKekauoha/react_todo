@@ -25,15 +25,19 @@ componentDidMount() {
   let geoLocate = document.getElementById("weather");
 
   let getLocation = () => {
+    console.log('init fn')
       if (navigator.geolocation) {
+        console.log('geo success')
           navigator.geolocation.getCurrentPosition(showPosition);
       } else {
+        console.log('failed')
+        alert('Your browser does not support geolocation')
           geoLocate.innerHTML = "Geolocation is not supported by this browser.";
       }
   }
 
    let showPosition = (position) => {
-    console.log(position)
+    console.log('show position')
       this.setState({
         lat: position.coords.latitude,
         lon: position.coords.longitude
@@ -44,7 +48,7 @@ componentDidMount() {
 
   getLocation();
   let getForecast = () => {
-    axios.get(`http://api.wunderground.com/api/${this.state.API_KEY}/conditions/forecast/q/${this.state.lat},${this.state.lon}.json `)
+    axios.get(`https://api.wunderground.com/api/${this.state.API_KEY}/conditions/forecast/q/${this.state.lat},${this.state.lon}.jsonp `)
       .then((data) => {
         console.log(data);
         this.setState({
