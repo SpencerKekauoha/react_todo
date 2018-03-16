@@ -8,7 +8,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px; }
   .welcome h1 {
     color: #fff;
     text-align: center;
