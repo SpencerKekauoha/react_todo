@@ -16,6 +16,13 @@ class List extends React.Component {
       notes: [],
       noteText: ''
     }
+
+
+  }
+
+  componentDidMount() {
+    let cachedNotes = JSON.parse(localStorage.getItem('notes'));
+    this.setState({ notes: cachedNotes })
   }
 
   addToList() {
@@ -40,14 +47,14 @@ class List extends React.Component {
     }
 
     // If unique input, add task
+    localStorage.setItem('notes', JSON.stringify([...this.state.notes, {task: this.state.noteText, isComplete: false}]));
     this.setState({ notes: [...this.state.notes, {task: this.state.noteText, isComplete: false}] })
     this.setState({ noteText: '' })
   }
 
   deleteFromList(key) {
-    console.log('click', key);
-    console.log(this.state.notes);
-    this.state.notes.splice(key, 1)
+    this.state.notes.splice(key, 1);
+    localStorage.setItem('notes', JSON.stringify( this.state.notes ));
     this.setState({ notes:  this.state.notes });
   }
 
@@ -59,6 +66,8 @@ class List extends React.Component {
       }
       return note;
     })
+
+    localStorage.setItem('notes', JSON.stringify( updateNotes ));
     this.setState({
       notes: updateNotes
     })
