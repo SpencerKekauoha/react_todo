@@ -23,6 +23,7 @@ $blue: #00b0ff;
 $green: #22e58a;
 $red: #FF9E80;
 $grey: #adadad;
+$dark-gray: #2E3335;
 
 
 .list {
@@ -49,9 +50,9 @@ $grey: #adadad;
     padding: 15px 25px;
     margin-bottom: 15px;
     border-radius: 25px;
-    -webkit-box-shadow: 0px 2px 11px -1px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 11px -1px rgba(0,0,0,0.75);
-    box-shadow: 0px 2px 11px -1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(69,69,69,1);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(69,69,69,1);
+    box-shadow: 0px 2px 5px 0px rgba(69,69,69,1);
     font-size: 16px;
   }
 
@@ -71,17 +72,21 @@ $grey: #adadad;
 
   /////// Checkmark
 
+  .check-container {
+    display: flex;
+    flex-direction: row;
+  }
+
   .check {
-    background: $red;
+    background: white;
+    margin-right: 20px;
     height: 20px;
     width: 20px;
     border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    -webkit-box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.64);
-    -moz-box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.64);
-    box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.64);
+    border: $dark-gray 1px solid;
 
     &:hover {
       cursor: pointer;
@@ -95,6 +100,34 @@ $grey: #adadad;
       border: solid white;
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
+    }
+  }
+
+  .delete {
+    position: relative;
+    width: 20px;
+    height: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .criss, .cross {
+      position: absolute;
+      background: $dark-gray;
+      height: 20px;
+      width: 2px;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    .criss {
+      transform: rotate(-50deg);
+    }
+
+    .cross {
+      transform: rotate(50deg);
     }
   }
 

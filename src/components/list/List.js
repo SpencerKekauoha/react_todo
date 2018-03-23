@@ -44,6 +44,13 @@ class List extends React.Component {
     this.setState({ noteText: '' })
   }
 
+  deleteFromList(key) {
+    console.log('click', key);
+    console.log(this.state.notes);
+    this.state.notes.splice(key, 1)
+    this.setState({ notes:  this.state.notes });
+  }
+
   toggleNoteStatus(key, task) {
     // Toggle status to complete or incomplete
     let updateNotes = this.state.notes.map((note) => {
@@ -101,7 +108,13 @@ class List extends React.Component {
 
   render() {
     let notes = this.state.notes.map((val, key) => {
-      return <Note toggleNoteStatus={() => this.toggleNoteStatus(key, val.task)} task={val.task} status={val.isComplete} key={key}></Note>
+      return <Note
+                deleteFromList={() => this.deleteFromList(key)}
+                toggleNoteStatus={() => this.toggleNoteStatus(key, val.task)}
+                task={val.task}
+                status={val.isComplete}
+                key={key}>
+              </Note>
     })
 
     return (
@@ -110,7 +123,7 @@ class List extends React.Component {
           {notes}
         </Grid>
         <Grid container spacing={8} justify='center'>
-          <Grid item xs={11} md={6}>
+          <Grid item xs={11} lg={8}>
             <div className="note-input">
               <input
                 placeholder="Add a task"
