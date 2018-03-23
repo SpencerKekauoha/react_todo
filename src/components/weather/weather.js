@@ -54,7 +54,7 @@ componentDidMount() {
 
   getLocation();
 
-  // api call to weather underground: append lon, lat, and apikey to query string
+  // api call to weather underground: append lon, lat, and apikey to query string.
   let getForecast = () => {
     axios.get(`https://api.wunderground.com/api/${this.state.API_KEY}/conditions/forecast/q/${this.state.lat},${this.state.lon}.jsonp `)
       .then((data) => {
