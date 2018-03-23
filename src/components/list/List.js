@@ -20,10 +20,11 @@ class List extends React.Component {
 
   }
 
-  componentDidMount() {
-    let cachedNotes = JSON.parse(localStorage.getItem('notes'));
-    this.setState({ notes: cachedNotes })
-  }
+  // On Mounted, setState to localStorage
+  // componentDidMount() {
+  //   let cachedNotes = JSON.parse(localStorage.getItem('notes'));
+  //   this.setState({ notes: cachedNotes })
+  // }
 
   addToList() {
     let duplicate = false;
