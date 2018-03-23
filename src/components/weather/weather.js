@@ -14,6 +14,8 @@ class Weather extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log(Config)
+
     this.state = {
       forecast: null,
       lon: 0,

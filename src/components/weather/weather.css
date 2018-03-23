@@ -22,7 +22,7 @@
       z-index: 10; }
   .loading i {
     font-size: 100px;
-    color: red;
+    color: #F5D76E;
     animation: load 3s infinite;
     padding: 100px 0;
     z-index: 5; }
