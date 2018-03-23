@@ -21,10 +21,11 @@ class List extends React.Component {
   }
 
   // On Mounted, setState to localStorage
-  componentWillMount() {
-    let cachedNotes = JSON.parse(localStorage.getItem('notes'));
-    this.setState({ notes: cachedNotes })
-  }
+  // componentWillMount() {
+  //   let cachedNotes = cookies.get('notes');
+  //   console.log(cachedNotes);
+  //   this.setState({ notes: cachedNotes });
+  // }
 
   addToList() {
     let duplicate = false;
@@ -48,14 +49,14 @@ class List extends React.Component {
     }
 
     // If unique input, add task
-    localStorage.setItem('notes', JSON.stringify([...this.state.notes, {task: this.state.noteText, isComplete: false}]));
+    // localStorage.setItem('notes', JSON.stringify([...this.state.notes, {task: this.state.noteText, isComplete: false}]));
     this.setState({ notes: [...this.state.notes, {task: this.state.noteText, isComplete: false}] })
     this.setState({ noteText: '' })
   }
 
   deleteFromList(key) {
     this.state.notes.splice(key, 1);
-    localStorage.setItem('notes', JSON.stringify( this.state.notes ));
+    // localStorage.setItem('notes', JSON.stringify( this.state.notes ));
     this.setState({ notes:  this.state.notes });
   }
 
@@ -68,7 +69,7 @@ class List extends React.Component {
       return note;
     })
 
-    localStorage.setItem('notes', JSON.stringify( updateNotes ));
+    // localStorage.setItem('notes', JSON.stringify( updateNotes ));
     this.setState({
       notes: updateNotes
     })

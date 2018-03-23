@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CookiesProvider } from 'react-cookie';
 
 // Component
 import Nav from './components/nav/Nav.js';
@@ -9,9 +10,11 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Nav></Nav>
-      </div>
+      <CookiesProvider>
+        <div className="App">
+          <Nav></Nav>
+        </div>
+      </CookiesProvider>
     );
   }
 }
